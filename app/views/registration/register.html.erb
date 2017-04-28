@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="../../assets/stylesheets/registration.scss" />
+		<title>Seller Registration</title>
+		<style>
+			body {
+				color: white;
+				position: relative;
+				margin: center;
+				text-align: center;
+				background-color: black;
+				font-family: Cambria;
+			}
+
+			.form_container {
+				height: 420px;
+				width: 500px;
+				border: 2px solid white;
+				margin: auto;
+				padding-top: 30px;
+                font-size: 20px;
+			}
+			.field {
+                margin: 20px 0 0 0;
+            }
+            #home_button {
+                font-size: 20px; 
+                border: none;
+                padding: 10px 30px 10px 30px;
+                background-color: gray;
+                border-radius: 5px;
+                text-decoration: none;
+                color: white;
+            }
+		</style>
+
+	</head>
+	<body>
+        <div style="height:100px; text-align:center"><a id="home_button" href="/">Go to Home page</a></div>
+		<div class="form_container">
+			<h1 style="font-size: 42px">New Seller</h1>
+			<%= form_tag registration_create_path do %>
+	  			<div class="field">
+	  				<%= label_tag(:name, "Name") %> <br>
+	 	 			<%= text_field_tag(:name) %>
+				</div>
+
+	  			<div class="field">
+	 	 			<%= label_tag(:email, "Email") %> <br>
+	 	 			<%= text_field_tag(:email) %>
+				</div>
+
+	  			<div class="field"> 
+	 		 		<%= label_tag(:password, "Password") %> <br>
+		 	 		<%= password_field_tag(:password) %>
+				</div>
+
+	  			<div class="field" style="margin-top:30px">
+		 	 		<%= submit_tag("Create Seller") %>
+				</div>
+			<% end %>
+			<% if @invalid %>
+				<div class="field" style="color: Red">Invalid input!</div>
+			<% end %>	
+
+		</div>
+	</body>
+</html>

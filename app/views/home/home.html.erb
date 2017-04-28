@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <%= stylesheet_link_tag "home.css" %>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+  </head>
+  <body> 
+    <div style="width:70%; text-align:right; margin:auto; padding:30px 30px 0 0">
+      <% if not @current_seller_id.nil? %>
+        <span class="seller_name">Hi, <%= @current_seller_name %></span>
+        <%= link_to 'Account', sellers_account_path(curr_sell_id: @current_seller_id), class: "account_buttons" %>
+        <%= link_to 'Log Out', sellers_logout_path, class: "account_buttons" %>
+      <% else %>
+        <%= link_to 'Log In', login_path, class: "account_buttons" %>
+      <% end %>
+      <a href="login" id="sell_button">Sell your book!</a>
+    </div>
+
+    <div id="title">
+      Book Exchange
+    </div>
+    <div id="sub-title">
+      Buy or Sell your textbooks to other students!
+    </div>
+    <form name="Search-Form"style="width: 300px;margin-bottom: 150px">
+      <div style = "position:absolute; right:17.5%">
+        Search for a book: <input name="search" type="text">
+      </div>
+    </form>
+    <% @all_books.each do |b| %>
+      <div class="book-container">
+        <img class="book-container-img" src=<%= b.image %> />
+        <div class="book_info_container">
+          <div class="book_name"><%=b.name %></div>
+          <div class="book_info"><b>Seller:</b> <%= b.seller.name %></div>
+          <div class="book_info"><b>Email:</b> <%= b.seller.email %></div>
+          <div class="book_info"><b>Price:</b> $<%= b.price %></div>
+        </div>
+      </div>
+    <% end %>
+    <div class="footer">
+    </div>
+  
+  </body>
+</html>
+
